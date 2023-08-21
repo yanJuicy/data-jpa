@@ -1,4 +1,4 @@
-package study.datajpa;
+package study.datajpa.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
