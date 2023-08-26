@@ -1,5 +1,7 @@
 package study.datajpa.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -40,4 +42,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findOptionalByUsername(String username); // 단건 Optional
 
+    Page<Member> findByAge(int age, Pageable pageable);
+
+    @Query(value = "SELECT m FROM Member m",
+            countQuery = "SELECT COUNT(m.username) FROM Member m")
+    Page<Member> findMemberAllCountBy(Pageable pageable);
 }
