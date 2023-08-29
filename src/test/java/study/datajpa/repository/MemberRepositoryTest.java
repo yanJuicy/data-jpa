@@ -176,4 +176,16 @@ class MemberRepositoryTest {
         }
     }
 
+    @Test
+    void queryHint() {
+        memberRepository.save(new Member("member1", 10));
+        em.flush();
+        em.clear();
+
+        Member member = memberRepository.findReadOnlyByUsername("member1");
+        member.setUsername("member2");
+
+        em.flush(); // Update Query 실행 X
+    }
+
 }
